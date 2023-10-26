@@ -51,7 +51,7 @@ const posts = [
       },
       { type: "link", content: "arlen.webdevelop/doctorcare" },
     ],
-    publishedAT: new Date("2023-10-12 20:00:00"),
+    publishedAT: new Date("2023-10-15 20:00:00"),
   },
 ];
 
@@ -66,6 +66,7 @@ export function App() {
           {posts.map((post) => {
             return (
               <Post
+                key={post.id}
                 author={post.author}
                 content={post.content}
                 publishedAT={post.publishedAT}
