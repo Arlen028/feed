@@ -33,6 +33,13 @@ export function Post({ author, publishedAT, content }) {
     setNewCommentText(event.target.value);
   }
 
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeleteOne = comments.filter((comment) => {
+      return comment !== commentToDelete;
+    });
+    setComments(commentsWithoutDeleteOne);
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -74,6 +81,7 @@ export function Post({ author, publishedAT, content }) {
           placeholder="Deixe um cometario"
           value={newCommentText}
           onChange={handleNewCommentChange}
+          required
         />
 
         <footer>
@@ -83,7 +91,13 @@ export function Post({ author, publishedAT, content }) {
 
       <div className={styles.commentLista}>
         {comments.map((comment) => {
-          return <Comment key={comment} content={comment} />;
+          return (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          );
         })}
       </div>
     </article>
